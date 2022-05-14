@@ -11,7 +11,7 @@ a-menu(
   a-sub-menu(key="sub1")
     template(#icon)
       setting-outlined
-    template(#title) 模块选择
+    template(#title) 项目管理
     a-menu-item-group(title="项目管理")
       a-menu-item(key="setting:1") Option 1
       a-menu-item(key="setting:2") Option 2
@@ -24,9 +24,11 @@ a-menu(
     a-menu-item-group(title="个人中心")
       a-menu-item(key="setting:3") Option 7
       a-menu-item(key="setting:4") Option 8
-  a-menu-item(key="1") nav 1
-  a-menu-item(key="2") nav 2
-  a-menu-item(key="3") nav 3
+  a-menu-item(key="1") 项目看板
+  a-menu-item(key="2") 迭代计划
+  a-menu-item(key="3") 日会看板
+  a-menu-item(key="4") 发布管理
+  a-menu-item(key="5") 敏捷回顾
 </template>
 
 <script lang="ts">
