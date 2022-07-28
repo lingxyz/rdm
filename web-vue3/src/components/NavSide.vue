@@ -23,25 +23,25 @@ a-menu(
       span
         laptop-outlined
         subnav 技术架构
-    a-menu-item(key="5") option5
-    a-menu-item(key="6") option6
-    a-menu-item(key="7") option7
+    a-menu-item(key="5") 技术基建
+    a-menu-item(key="6") 技术中台
+    a-menu-item(key="7") 业务中台
     a-menu-item(key="8") option8
   a-sub-menu(key="sub3")
     template(#title)
       span
         notification-outlined
         subnav 团队管理
-    a-menu-item(key="9") option9
-    a-menu-item(key="10") option10
-    a-menu-item(key="11") option11
-    a-menu-item(key="12") option12
+    a-menu-item(key="9") 资源分析
+    a-menu-item(key="10") 员工招聘
+    a-menu-item(key="11") 员工成长
+    a-menu-item(key="12") 绩效管理
   a-sub-menu(key="sub4")
     template(#title)
       span
         notification-outlined
         subnav 个人中心
-    a-menu-item(key="13") option9
+    a-menu-item(key="13") 我的看板
     a-menu-item(key="14") option10
     a-menu-item(key="15") option11
     a-menu-item(key="16") option12
@@ -72,6 +72,10 @@ export default defineComponent({
       {
         text: "敏捷回顾",
         url: "/project/review",
+      },
+      {
+        text: "质量监测",
+        url: "/project/quality",
       },
     ]);
     // 跳转
