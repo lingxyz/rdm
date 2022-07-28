@@ -9,63 +9,39 @@
   <sql id="Base_Column_List" >
     user_id, user_name, password
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+
+  <!-- 自己添加的mapper -->
+  <select id="findAll" resultType="com.example.demo.entity.User">
+    select * from cust_user
+  </select>
+  <select id="login" resultMap="BaseResultMap" parameterType="com.example.demo.entity.User" >
     select
     <include refid="Base_Column_List" />
     from user
-    where user_id = #{userId,jdbcType=INTEGER}
+    where user_name = #{userName,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from user
-    where user_id = #{userId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.example.demo.entity.User" >
-    insert into user (user_id, user_name, password
-      )
-    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.example.demo.entity.User" >
-    insert into user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        user_id,
-      </if>
-      <if test="userName != null" >
-        user_name,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="userName != null" >
-        #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.User" >
-    update user
-    <set >
-      <if test="userName != null" >
-        user_name = #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where user_id = #{userId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.User" >
-    update user
-    set user_name = #{userName,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR}
-    where user_id = #{userId,jdbcType=INTEGER}
-  </update>
+  <select id="findUserByName" resultMap="BaseResultMap" parameterType="com.example.demo.entity.User" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where user_name = #{userName,jdbcType=VARCHAR}
+  </select>
+  <!--驼峰规则说明：
+Mybatis 功能1：可以实现结果集于实体对象的映射！！！
+对象与表 一一对应，
+对象中的属性与表中的字段 一一对应。
+
+User(userId,userName)
+user表(user_id,user_name)
+resultType：不能映射。
+resultMap：自己是手动编辑
+简化上述操作：引入驼峰规则。
+
+思考：开启驼峰规则如下，是否可以映射？
+     User(user_id,user_name)
+     user表(user_id,user_name)
+     字段user_id~~userid~~userId
+     setId()
+ 规则：如果开启了驼峰规则，必须按照要求编辑否则报错
+-->
 </mapper>

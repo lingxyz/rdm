@@ -1,7 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.common.Result;
-import com.example.demo.dao.UserExtendsMapper;
+import com.example.demo.dao.UserMapper;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
   @Autowired
-  private UserExtendsMapper userMapper;
+  private UserMapper userMapper;
 
   // 自定义方法
 
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     result.setSuccess(false);
     result.setDetail(null);
     try {
-      User existUser = userMapper.findUserByName(user.getUserName());
+      User existUser = userMapper.findUserByName(user.getName());
       if(existUser != null){
         //如果用户名已存在
         result.setMsg("用户名已存在");
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
       } else {
         result.setMsg("登录成功");
         result.setSuccess(true);
-        user.setUserId(exitUser.getUserId());
+        user.setId(exitUser.getId());
         result.setDetail(user);
       }
     } catch (Exception e) {

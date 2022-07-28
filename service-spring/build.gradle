@@ -6,40 +6,51 @@ plugins {
   id 'java'
   id 'maven-publish'
   id 'org.springframework.boot' version '2.5.0'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 description = 'demo'
-java.sourceCompatibility = JavaVersion.VERSION_11
+sourceCompatibility = '11'
 
 repositories {
-  mavenLocal()
-  maven {
-    url = uri('https://repo.maven.apache.org/maven2/')
-  }
+  mavenCentral()
 }
 
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-web'
-  implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter'
-  implementation 'com.alibaba:druid-spring-boot-starter:1.1.1'
+  // mybatis-plus 是对mybatis的增强。原有的mybatis需要删除。
+  implementation 'com.baomidou:mybatis-plus-boot-starter:3.4.3'
   implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+  // validation 接口参数验证
   implementation 'org.springframework.boot:spring-boot-starter-validation'
+  // swagger 文档
   implementation 'io.springfox:springfox-swagger2:2.9.2'
   implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+  // 支持热部署
   implementation 'org.springframework.boot:spring-boot-devtools'
   implementation 'com.auth0:java-jwt:3.18.2'
-	implementation 'com.alibaba:fastjson:1.2.47'
-  runtimeOnly 'mysql:mysql-connector-java:8.0.17'
+  implementation 'com.alibaba:fastjson:1.2.47'
+  // mysql驱动
+  runtimeOnly 'mysql:mysql-connector-java'
+  // lombok 插件自动 set/get/构造方法
   compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {
-	useJUnitPlatform()
+  useJUnitPlatform()
+}
+
+// 显示错误详情
+allprojects {
+  gradle.projectsEvaluated {
+    tasks.withType(JavaCompile) {
+      options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+    }
+  }
 }
 
 publishing {
@@ -52,13 +63,4 @@ publishing {
 
 tasks.withType(JavaCompile) {
   options.encoding = 'UTF-8'
-}
-
-// 显示错误详情
-allprojects {
-	gradle.projectsEvaluated {
-		tasks.withType(JavaCompile) {
-			options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
-		}
-	}
 }

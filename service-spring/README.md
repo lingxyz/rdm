@@ -25,6 +25,7 @@ mvn mybatis-generator:generate -e
 - 注册：http://localhost:8080/regist.html
 
 ## Features
-- [x] mybatis-generator
-- [x] druid 连接池
+- [x] mybatis-plus
+- [x] hikari 连接池
 - [x] swagger2 接口文档
+- [x] gradle
