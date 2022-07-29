@@ -15,15 +15,4 @@ public interface UserMapper extends BaseMapper<User> {
   List<User> findAll();
   User login(User record);
   User findUserByName(String userName);
-  int deleteByPrimaryKey(Integer userId);
-  // 以下可 mybatis-plus自动生成，待删除
-  int insert(User record);
-
-  int insertSelective(User record);
-
-  User selectByPrimaryKey(Integer userId);
-
-  int updateByPrimaryKeySelective(User record);
-
-  int updateByPrimaryKey(User record);
 }

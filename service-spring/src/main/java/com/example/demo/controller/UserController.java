@@ -6,6 +6,7 @@ import com.example.demo.service.impl.UserServiceImpl;
 
 import javax.annotation.Resource;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -63,7 +64,7 @@ public class UserController {
    * 用户列表
    * @return List<User>
    */
-  @PostMapping(value = "/users")
+  @GetMapping(value = "/users")
   @ApiOperation(value = "用户列表", notes = "查询用户列表")
   public Result<User> users(){
     return userService.users();
