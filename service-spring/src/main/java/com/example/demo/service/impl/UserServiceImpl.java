@@ -5,6 +5,8 @@ import com.example.demo.dao.UserMapper;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -85,57 +87,19 @@ public class UserServiceImpl implements UserService {
    * @return List<User>
    */
   @Override
-  public Result<User> users() {
-    // Result<User> result = new Result<User>();
-    // result.setSuccess(false);
-    // result.setDetail(null);
-    // try {
-    // User existUser = userMapper.findUserByName(user.getName());
-    // if(existUser != null){
-    // //如果用户名已存在
-    // result.setMsg("用户名已存在");
-    // } else {
-    // userMapper.insert(user);
-    // //System.out.println(user.getId());
-    // result.setMsg("注册成功");
-    // result.setSuccess(true);
-    // result.setDetail(user);
-    // }
-    // } catch (Exception e) {
-    // result.setMsg(e.getMessage());
-    // e.printStackTrace();
-    // }
-    // return result;
-  }
-
-  // 自动生成的mapper方法
-  @Override
-  public int deleteByPrimaryKey(Integer userId) {
-    return userMapper.deleteByPrimaryKey(userId);
-  }
-
-  @Override
-  public int insert(User record) {
-    return userMapper.insert(record);
-  }
-
-  @Override
-  public int insertSelective(User record) {
-    return userMapper.insertSelective(record);
-  }
-
-  @Override
-  public User selectByPrimaryKey(Integer userId) {
-    return userMapper.selectByPrimaryKey(userId);
-  }
-
-  @Override
-  public int updateByPrimaryKeySelective(User record) {
-    return userMapper.updateByPrimaryKeySelective(record);
-  }
-
-  @Override
-  public int updateByPrimaryKey(User record) {
-    return userMapper.updateByPrimaryKey(record);
+  public Result<List<User>> getUserList() {
+    Result<List<User>> result = new Result<>();
+    result.setSuccess(false);
+    result.setDetail(null);
+    try {
+      List<User> users = userMapper.selectList(null);
+      result.setMsg("查询成功");
+      result.setSuccess(true);
+      result.setDetail(users);
+    } catch (Exception e) {
+    result.setMsg(e.getMessage());
+    e.printStackTrace();
+    }
+    return result;
   }
 }

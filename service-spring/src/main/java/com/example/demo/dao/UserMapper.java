@@ -12,7 +12,6 @@ import java.util.List;
 public interface UserMapper extends BaseMapper<User> {
   //MP规则：以对象的方式操作数据库，CURD操作
   //查询所有的user用户
-  List<User> findAll();
   User login(User record);
   User findUserByName(String userName);
 }

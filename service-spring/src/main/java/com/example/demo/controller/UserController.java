@@ -4,6 +4,8 @@ import com.example.demo.common.Result;
 import com.example.demo.entity.User;
 import com.example.demo.service.impl.UserServiceImpl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -64,10 +66,10 @@ public class UserController {
    * 用户列表
    * @return List<User>
    */
-  @GetMapping(value = "/users")
+  @GetMapping(value = "/list")
   @ApiOperation(value = "用户列表", notes = "查询用户列表")
-  public Result<User> users(){
-    return userService.users();
+  public Result<List<User>> getUserList(){
+    return userService.getUserList();
   }
 
 }
