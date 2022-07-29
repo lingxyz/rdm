@@ -11,9 +11,6 @@
   </sql>
 
   <!-- 自己添加的mapper -->
-  <select id="findAll" resultType="com.example.demo.entity.User">
-    select * from cust_user
-  </select>
   <select id="login" resultMap="BaseResultMap" parameterType="com.example.demo.entity.User" >
     select
     <include refid="Base_Column_List" />
@@ -25,6 +22,9 @@
     <include refid="Base_Column_List" />
     from user
     where user_name = #{userName,jdbcType=VARCHAR}
+  </select>
+  <select id="findAll" resultType="com.example.demo.entity.User">
+    select * from cust_user
   </select>
   <!--驼峰规则说明：
 Mybatis 功能1：可以实现结果集于实体对象的映射！！！

@@ -37,7 +37,7 @@ public class Swagger2 {
   private ApiInfo getApiInfo() {
     return new ApiInfoBuilder()
       // 页面标题
-      .title("Spring Boot 测试使用 Swagger2 构建RESTful API")
+      .title("Spring Boot 测试使用 Swagger2 构建 RESTful API")
       // 描述
       .description("API描述")
       // 创建人信息

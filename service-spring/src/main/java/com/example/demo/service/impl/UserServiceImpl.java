@@ -5,7 +5,8 @@ import com.example.demo.dao.UserMapper;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,13 +15,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-  @Autowired
+  @Resource
   private UserMapper userMapper;
 
   // 自定义方法
 
   /**
    * 注册
+   *
    * @param user
    * @return User
    */
@@ -31,12 +33,12 @@ public class UserServiceImpl implements UserService {
     result.setDetail(null);
     try {
       User existUser = userMapper.findUserByName(user.getName());
-      if(existUser != null){
-        //如果用户名已存在
+      if (existUser != null) {
+        // 如果用户名已存在
         result.setMsg("用户名已存在");
       } else {
         userMapper.insert(user);
-        //System.out.println(user.getId());
+        // System.out.println(user.getId());
         result.setMsg("注册成功");
         result.setSuccess(true);
         result.setDetail(user);
@@ -50,12 +52,13 @@ public class UserServiceImpl implements UserService {
 
   /**
    * 登录
+   *
    * @param user
    * @return User
    */
   @Override
   public Result<User> login(User user) {
-    Result<User> result = new Result<User>();
+    Result<User> result = new Result<>();
     result.setSuccess(false);
     result.setDetail(null);
     try {
@@ -73,7 +76,36 @@ public class UserServiceImpl implements UserService {
       e.printStackTrace();
     }
     return result;
+  }
 
+  /**
+   * 用户列表
+   *
+   * @param null
+   * @return List<User>
+   */
+  @Override
+  public Result<User> users() {
+    // Result<User> result = new Result<User>();
+    // result.setSuccess(false);
+    // result.setDetail(null);
+    // try {
+    // User existUser = userMapper.findUserByName(user.getName());
+    // if(existUser != null){
+    // //如果用户名已存在
+    // result.setMsg("用户名已存在");
+    // } else {
+    // userMapper.insert(user);
+    // //System.out.println(user.getId());
+    // result.setMsg("注册成功");
+    // result.setSuccess(true);
+    // result.setDetail(user);
+    // }
+    // } catch (Exception e) {
+    // result.setMsg(e.getMessage());
+    // e.printStackTrace();
+    // }
+    // return result;
   }
 
   // 自动生成的mapper方法

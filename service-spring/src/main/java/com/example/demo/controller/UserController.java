@@ -3,7 +3,9 @@ package com.example.demo.controller;
 import com.example.demo.common.Result;
 import com.example.demo.entity.User;
 import com.example.demo.service.impl.UserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.annotation.Resource;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +24,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "注册中心")
 public class UserController {
 
-  @Autowired
+  @Resource
   private UserServiceImpl userService;
 
   /**
@@ -55,6 +57,16 @@ public class UserController {
   })
   public Result<User> login(User user){
     return userService.login(user);
+  }
+
+  /**
+   * 用户列表
+   * @return List<User>
+   */
+  @PostMapping(value = "/users")
+  @ApiOperation(value = "用户列表", notes = "查询用户列表")
+  public Result<User> users(){
+    return userService.users();
   }
 
 }
