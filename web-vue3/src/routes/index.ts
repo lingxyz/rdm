@@ -10,11 +10,17 @@ const projectRelease = () => import('../pages/project/release.vue')
 const projectReview = () => import('../pages/project/review.vue')
 const projectRuality = () => import('../pages/project/quality.vue')
 const projectPlanSchedule = () => import('../pages/project/plan/schedule.vue')
+const workplace = () => import('../pages/workplace/index.vue')
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/project/board'
+    redirect: '/workplace'
+  },
+  {
+    path: "/workplace",
+    name: "workplace",
+    component: workplace
   },
   {
     path: "/project/board",

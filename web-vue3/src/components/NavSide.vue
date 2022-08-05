@@ -3,55 +3,88 @@
  */
 <template lang="pug">
 a-menu(
-  v-model:selectedKeys="selectedKeys2",
+  v-model:selectedKeys="selectedKeys",
   v-model:openKeys="openKeys",
   mode="inline",
   :style="{ height: '100%', borderRight: 0 }"
 )
-  a-sub-menu(key="sub1")
+  //- 工作台
+  a-menu-item(key="sub7" v-if="navHeadSelectedKey == 1")
+    history-outlined
+    span 工作台
+  a-sub-menu(key="sub6" v-if="navHeadSelectedKey == 1")
+    template(#icon)
+      fund-projection-screen-outlined
     template(#title)
-      span
-        user-outlined
-        subnav 项目管理
-    a-menu-item(
-      :key="index + 1",
-      v-for="(link, index) in links",
-      @click="handleLink(link)"
-    ) {{link.text}}
-  a-sub-menu(key="sub2")
+      subnav 仪表盘
+    a-menu-item(key="18") 分析页
+    a-menu-item(key="19") 监控页
+  a-sub-menu(key="sub4" v-if="navHeadSelectedKey == 1")
+    template(#icon)
+      user-outlined
     template(#title)
-      span
-        laptop-outlined
-        subnav 技术架构
-    a-menu-item(key="5") 技术基建
-    a-menu-item(key="6") 技术中台
-    a-menu-item(key="7") 业务中台
-    a-menu-item(key="8") option8
-  a-sub-menu(key="sub3")
+      subnav 个人中心
+    a-menu-item(key="16") 个人看板
+    a-menu-item(key="17") 个人设置
+  a-sub-menu(key="sub5" v-if="navHeadSelectedKey == 1")
+    template(#icon)
+      SettingOutlined
     template(#title)
-      span
-        notification-outlined
-        subnav 团队管理
-    a-menu-item(key="9") 资源分析
-    a-menu-item(key="10") 员工招聘
-    a-menu-item(key="11") 员工成长
-    a-menu-item(key="12") 绩效管理
-  a-sub-menu(key="sub4")
+      subnav 系统管理
+    a-menu-item(key="13") 用户管理
+    a-menu-item(key="14") 角色管理
+    a-menu-item(key="15") 权限管理
+  //- 项目管理
+  a-menu-item(
+    :key="index + 1",
+    v-for="(link, index) in links",
+    @click="handleLink(link)"
+    v-if="navHeadSelectedKey == 2"
+  )
+    project-outlined
+    span {{link.text}}
+  //- 技术架构
+  a-sub-menu(key="6" v-if="navHeadSelectedKey == 3")
+    template(#icon)
+      laptop-outlined
     template(#title)
-      span
-        notification-outlined
-        subnav 个人中心
-    a-menu-item(key="13") 我的看板
-    a-menu-item(key="14") option10
-    a-menu-item(key="15") option11
-    a-menu-item(key="16") option12
+      subnav 技术基建
+    a-menu-item(key="sub:1") xxx
+  a-sub-menu(key="7" v-if="navHeadSelectedKey == 3")
+    template(#icon)
+      laptop-outlined
+    template(#title)
+      subnav 技术中台
+    a-menu-item(key="sub:1") xxx
+  a-sub-menu(key="8" v-if="navHeadSelectedKey == 3")
+    template(#icon)
+      laptop-outlined
+    template(#title)
+      subnav 业务中台
+    a-menu-item(key="sub:1") xxx
+  //- 团队管理
+  a-menu-item(key="9" v-if="navHeadSelectedKey == 4")
+    history-outlined
+    span 资源分析
+  a-menu-item(key="10" v-if="navHeadSelectedKey == 4")
+    history-outlined
+    span 员工招聘
+  a-menu-item(key="11" v-if="navHeadSelectedKey == 4")
+    history-outlined
+    span 员工成长
+  a-menu-item(key="12" v-if="navHeadSelectedKey == 4")
+    history-outlined
+    span 绩效管理
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, getCurrentInstance } from "vue";
 
 export default defineComponent({
-  setup() {
+  props:{
+    navHeadSelectedKey: String
+  },
+  setup(props) {
     const links = ref([
       {
         text: "项目看板",
@@ -85,11 +118,13 @@ export default defineComponent({
       proxy.$router.push(link.url);
     };
 
+    console.log(props.navHeadSelectedKey);
+
     return {
       links,
       handleLink,
-      selectedKeys2: ref<string[]>(["1"]),
-      openKeys: ref<string[]>(["sub1"]),
+      selectedKeys: ref<string[]>(["1"]),
+      openKeys: ref<string[]>(["1"]),
     };
   },
 });

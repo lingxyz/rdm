@@ -5,10 +5,10 @@
 a-layout
   a-layout-header.header
     .logo
-    NavHead
+    NavHead(@selectedKey-emit="parentEmit")
   a-layout
     a-layout-sider(width="200" style="background: #fff")
-      NavSide
+      NavSide(:navHeadSelectedKey="navHeadSelectedKey")
     a-layout(style="padding: 0 24px 24px")
       a-breadcrumb(style="margin: 16px 0")
         a-breadcrumb-item Home
@@ -20,7 +20,7 @@ a-layout
         slot
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, getCurrentInstance } from 'vue'
 import NavHead from '../components/NavHead.vue'
 import NavSide from '../components/NavSide.vue'
 
@@ -30,8 +30,16 @@ export default defineComponent({
     NavSide,
   },
   setup() {
+    const { proxy } = getCurrentInstance();
+
+    let navHeadSelectedKey = ref(1);
+    function parentEmit(val) {
+      proxy.navHeadSelectedKey = val[0];
+    }
     return {
       collapsed: ref<boolean>(false),
+      navHeadSelectedKey,
+      parentEmit,
     };
   },
 });
