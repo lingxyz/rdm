@@ -1,0 +1,1 @@
+import{o as e,c as o,_ as r}from"./index.c361ad6b.js";const c={style:{color:"#faad14"}};function t(n,s){return e(),o("div",c,"\u654F\u6377\u56DE\u987E\u3001\u6280\u672F\u56DE\u987E")}const a={};var d=r(a,[["render",t]]);export{d as default};
