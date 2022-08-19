@@ -1,1 +1,0 @@
-import{o as a,c as o,F as t,a as e,_ as n}from"./index.3c680e1b.js";const s=e("div",null,"This is home page. Reference example:",-1),c=e("iframe",{src:"https://www.jiandaoyun.com/",width:"100%"},null,-1);function r(l,_){return a(),o(t,null,[s,c],64)}const i={};var d=n(i,[["render",r]]);export{d as default};

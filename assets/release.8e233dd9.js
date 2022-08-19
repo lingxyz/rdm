@@ -1,0 +1,1 @@
+import{o as e,c as o,_ as r}from"./index.696963a3.js";const c={style:{color:"#faad14"}};function t(s,n){return e(),o("div",c,"\u53D1\u5E03\u7BA1\u7406\uFF1A\u53D1\u5E03\u8BA1\u5212\u6A21\u677F\u3001\u53D1\u5E03\u90AE\u4EF6\u3001\u81EA\u52A8\u5316\u5206\u652F\u540E\u7EED\u64CD\u4F5C")}const a={};var l=r(a,[["render",t]]);export{l as default};
