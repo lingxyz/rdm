@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw} from "vue-router";
 
+const home = () => import('../pages/home.vue')
 const library = () => import('../pages/library.vue')
 const process = () => import('../pages/process.vue')
 const headcount = () => import('../pages/headcount.vue')
@@ -15,7 +16,12 @@ const workplace = () => import('../pages/workplace/index.vue')
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/workplace'
+    redirect: '/home'
+  },
+  {
+    path: "/home",
+    name: "home",
+    component: home
   },
   {
     path: "/workplace",
